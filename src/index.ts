@@ -52,7 +52,7 @@ const getRecipeInfo = async (recipeName: string) => {
     
     만약 요리이름이 아닌경우에는 
     {
-        "error": "요리를 찾을 수 없어요."
+        "error": "조금 더 정확한 이름으로 찾아볼까요?"
     }
     라고 알려줘.`;
 
