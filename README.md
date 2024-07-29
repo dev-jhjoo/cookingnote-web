@@ -8,7 +8,14 @@
 
 ## 실행 방법
 
-1. OPENAI API KEY 필요
+1. OPENAI API KEY 필요 *[참고링크](https://platform.openai.com/)
+```
+.env파일 생성 후 아래 값 추가
+OPENAI_KEY=
+```
+
+
+
 2. 필요한 노드 모듈 설치
 ```
 > npm install
