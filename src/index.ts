@@ -11,11 +11,12 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_KEY
 });
 
-// Static files middleware
-app.use(express.static(path.join(__dirname, 'public')));
+// Set the static files directory
+app.use(express.static(path.join(__dirname, '/public')));
+app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
-    res.render('/index.html');
+    res.render('/index');
 });
 
 // API endpoint to get recipe info
