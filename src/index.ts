@@ -36,10 +36,8 @@ app.get('/api/recipe', async (req, res) => {
 
 const getRecipeInfo = async (recipeName: string) => {
     // 여기에 실제 요리 정보를 얻는 로직을 구현합니다.
-    console.log(`${recipeName} start!`);
-    const prompt = `요리재료, 대체가능한 재료 그리고 요리방법을 순서대로 
+    const prompt = `1. ${recipeName}요리를 만드는 요리재료, 대체가능한 재료 그리고 요리방법을 순서대로 
     이런 Json 형태로 알려줘.
-
     {
         recipeName,
         ingredients: ['ingredient1', 'ingredient2'],
@@ -47,14 +45,14 @@ const getRecipeInfo = async (recipeName: string) => {
         method: ['Prepare all ingredients.', 'Follow the instructions step by step.']
     }
 
-    재료명이나 요리방식은 모두 한글로 알려줘
-    요리명: ${recipeName}
+    2. 재료명이나 요리방식은 모두 한글로만 알려줘
     
-    만약 요리이름이 아닌경우에는 
+    3. 만약 요리이름이 아닌경우에는 왜 못찾았는지 이유를 아래 json 형식으로 알려줘
     {
-        "error": "조금 더 정확한 이름으로 찾아볼까요?"
-    }
-    라고 알려줘.`;
+        "error": "{못찾은 이유}"
+    }`
+
+    console.log(prompt);
 
     try {
         const response = await openai.chat.completions.create({
@@ -65,6 +63,7 @@ const getRecipeInfo = async (recipeName: string) => {
             }],
             temperature: 0.7
         });
+
         console.log(response.choices[0].message.content)
         return JSON.parse(response.choices[0].message.content || 'null' );
     } catch (error) {
